@@ -221,7 +221,7 @@ const Index = () => {
             <div ref={el => boxRefs.current[2] = el} className={`bg-card rounded-xl p-6 border border-border transition-all duration-1000 delay-600 hover:border-primary/40 ${visibleBoxes[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'} max-w-3xl mx-auto`}>
 
               <div className="aspect-video rounded-lg overflow-hidden shadow-lg bg-muted">
-                <OptimizedVideo className="w-full h-full object-cover" src="/01.mp4" />
+                <OptimizedVideo className="w-full h-full object-cover" src="/assets/videos/our-creation/001.mp4" />
               </div>
 
             </div>
@@ -353,7 +353,7 @@ const Index = () => {
           <div className="mt-16 max-w-4xl mx-auto">
             <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/40 transition-colors duration-300">
               <div className="aspect-video rounded-lg overflow-hidden shadow-lg bg-muted">
-                <OptimizedVideo className="w-full h-full object-cover" src="/Complet.mp4" />
+                <OptimizedVideo className="w-full h-full object-cover" src="/assets/videos/our-creation/005.mp4" />
               </div>
             </div>
           </div>

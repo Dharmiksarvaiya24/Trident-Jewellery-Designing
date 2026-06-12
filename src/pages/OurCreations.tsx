@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
 import Seo from "@/components/Seo";
 
 // Use ?url query to get file URLs without bundling file contents into JS
@@ -167,14 +168,10 @@ const CreationCard = ({ item }: { item: CreationItem }) => {
       }}
     >
       {item.isVideo ? (
-        <video
+        <OptimizedVideo
           src={item.src}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 ${hovered ? "!scale-110 !brightness-110" : ""
-            }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 ${hovered ? "!scale-110 !brightness-110" : ""}`}
+          containerClassName="absolute inset-0 w-full h-full"
         />
       ) : (
         <OptimizedImage

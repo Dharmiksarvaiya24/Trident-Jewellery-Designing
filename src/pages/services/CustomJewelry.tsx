@@ -45,9 +45,9 @@ const sections = [
   },
 ];
 
-const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
+const RenderMedia = ({ src, alt, className, poster }: { src: string; alt: string; className?: string; poster?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} poster={poster} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -78,7 +78,7 @@ const CustomJewelry = () => {
                 <div className="w-full md:w-1/2">
                   <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
                     <div className="col-span-2 aspect-video overflow-hidden rounded-2xl border border-border hover:border-primary/40 transition-colors duration-300 relative group">
-                      <RenderMedia src={section.images[0]} alt={section.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <RenderMedia src={section.images[0]} alt={section.title} poster={section.images[1]} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     </div>
                     <div className="aspect-square overflow-hidden rounded-xl border border-border hover:border-primary/40 transition-colors duration-300 relative group">
                       <RenderMedia src={section.images[1]} alt={`${section.title} detail 1`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />

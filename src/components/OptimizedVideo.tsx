@@ -38,16 +38,7 @@ const OptimizedVideo = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          // Start playing once in view
-          if (videoRef.current && autoPlay) {
-            videoRef.current.play();
-          }
           observer.disconnect();
-        } else {
-          // Pause when out of view to save resources
-          if (videoRef.current) {
-            videoRef.current.pause();
-          }
         }
       },
       {
@@ -61,7 +52,14 @@ const OptimizedVideo = ({
     }
 
     return () => observer.disconnect();
-  }, [priority, autoPlay]);
+  }, [priority]);
+
+  // Start playback once loaded and in view
+  useEffect(() => {
+    if (isInView && videoRef.current && autoPlay) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isInView, autoPlay]);
 
   // Preload priority videos
   useEffect(() => {
@@ -109,7 +107,7 @@ const OptimizedVideo = ({
           loop={loop}
           muted={muted}
           playsInline={playsInline}
-          preload={priority ? "auto" : "metadata"}
+          preload={priority ? "auto" : "none"}
           onLoadedData={() => setIsLoaded(true)}
           onCanPlayThrough={() => setIsLoaded(true)}
           className={cn(
