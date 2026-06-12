@@ -42,7 +42,7 @@ const OptimizedVideo = ({
         }
       },
       {
-        rootMargin: "200px",
+        rootMargin: "0px 0px 100px 0px",
         threshold: 0.1,
       }
     );

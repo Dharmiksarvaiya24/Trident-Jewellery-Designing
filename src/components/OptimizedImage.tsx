@@ -59,7 +59,7 @@ const OptimizedImage = ({
         }
       },
       {
-        rootMargin: "200px", // Start loading 200px before entering viewport
+        rootMargin: "0px 0px 100px 0px",
         threshold: 0,
       }
     );
