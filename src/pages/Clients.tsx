@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import Seo from "@/components/Seo";
+import OptimizedImage from "@/components/OptimizedImage";
 
 import logo1 from "@/assets/imgs/Logo/0 (1).png";
 import logo2 from "@/assets/imgs/Logo/0 (2).png";
@@ -58,10 +60,11 @@ const Clients = () => {
 
   return (
     <PageTransition>
+      <Seo title="Our Clients" description="Trusted by leading jewelry brands worldwide including Tanishq, Malabar Gold, PC Jeweller, Titan, CaratLane, and many more." />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
 
-        <main className="flex-1 relative overflow-hidden">
+        <main id="main-content" className="flex-1 relative overflow-hidden">
           {/* Ambient background glows */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl animate-[float1_8s_ease-in-out_infinite]" />
@@ -92,14 +95,12 @@ const Clients = () => {
                   <div
                     key={index}
                     className="bg-card border border-border rounded-xl p-4 md:p-6 flex flex-col items-center justify-center transition-all duration-300 hover:border-primary/40 hover:scale-105"
-                    onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 30px hsl(11 88% 67% / 0.12)')}
-                    onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
                   >
-                    <img
+                    <OptimizedImage
                       src={client.logo}
                       alt={client.name || `Client Logo ${index + 1}`}
-                      className="h-20 md:h-28 w-auto max-w-full object-contain"
-                      loading="lazy"
+                      className="max-w-full object-contain"
+                      containerClassName="h-20 md:h-28 w-full flex items-center justify-center"
                     />
                   </div>
                 ))}

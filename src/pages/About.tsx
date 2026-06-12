@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import Seo from "@/components/Seo";
 import tridentLogo from "@/assets/imgs/image copy.png";
 import founderPhoto from "@/assets/founder-photo.png";
 
@@ -24,10 +25,11 @@ const About = () => {
 
   return (
     <PageTransition>
+      <Seo title="About Us" description="Meet the team behind Trident Jewellery Design — a young and creative studio founded in 2025, proudly serving 50+ clients with premium CAD designs." />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
 
-        <main className="flex-1 relative overflow-hidden">
+        <main id="main-content" className="flex-1 relative overflow-hidden">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary/5 blur-3xl rounded-full pointer-events-none" />
 
           <div className="relative z-10 container mx-auto px-4 py-20">
@@ -80,7 +82,7 @@ const About = () => {
                     </div>
                     <div className="text-center md:text-left">
                       <p className="text-primary text-xs tracking-[0.3em] uppercase font-medium mb-2">Founder</p>
-                      <h3 className="text-2xl font-bold text-foreground mb-1">Pritesh Prajapati</h3>
+                      <h2 className="text-2xl font-bold text-foreground mb-1">Pritesh Prajapati</h2>
                       <p className="text-primary text-sm mb-4"></p>
                       <p className="text-muted-foreground leading-relaxed text-sm">
                       </p>

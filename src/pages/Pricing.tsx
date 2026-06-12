@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import Seo from "@/components/Seo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -43,9 +44,10 @@ const Pricing = () => {
 
   return (
     <PageTransition>
+      <Seo title="Pricing" description="Get a quote for our premium jewelry CAD design services. Contact us for pricing details on custom designs, rendering, and ready files." />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 relative overflow-hidden">
+        <main id="main-content" className="flex-1 relative overflow-hidden">
           {/* Ambient glow */}
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 blur-3xl rounded-full pointer-events-none" />
 

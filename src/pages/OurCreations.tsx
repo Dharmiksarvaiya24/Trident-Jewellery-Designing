@@ -3,9 +3,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import Seo from "@/components/Seo";
 
-const mediaModules = import.meta.glob("@/assets/imgs/Our creation/*.{png,jpg,jpeg,mp4,webp}", { eager: true }) as Record<string, { default: string }>;
-const mediaPaths = Object.values(mediaModules).map(m => m.default);
+// Use ?url query to get file URLs without bundling file contents into JS
+// Only match images from source — videos served from public/
+const imageModules = import.meta.glob<string>(
+  "@/assets/imgs/Our creation/*.{webp,png,jpg,jpeg}",
+  { query: "?url", import: "default", eager: true },
+);
+
+// Videos served from public/ to avoid bundling large files
+const videoPaths = [
+  "/assets/videos/our-creation/001.mp4",
+  "/assets/videos/our-creation/002.mp4",
+  "/assets/videos/our-creation/003.mp4",
+  "/assets/videos/our-creation/005.mp4",
+  "/assets/videos/our-creation/006.mp4",
+  "/assets/videos/our-creation/007.mp4",
+];
+
+const mediaPaths: string[] = [...new Set(Object.values(imageModules)), ...videoPaths];
 
 const categories = ["All", "Rings", "Necklaces", "Bracelets", "Earrings", "Tiaras", "Collections"];
 const imageAspectRatios = ["1/1", "3/4", "4/3", "4/5", "5/4", "3/4", "4/5"];
@@ -39,7 +56,7 @@ const allItems = seededShuffle(
     return {
       id: i,
       src: path,
-      alt: `Creation Design ${i + 1}`,
+      alt: `${path.split("/").pop()?.split(".")[0] || "Creation"} — ${categories[hash % (categories.length - 1) + 1]} Design`,
       category: categories[hash % (categories.length - 1) + 1],
       isVideo,
       aspectRatio,
@@ -77,9 +94,10 @@ const OurCreations = () => {
 
   return (
     <PageTransition>
+      <Seo title="Our Creations" description="Explore our exquisite collection of handcrafted jewelry designs — rings, earrings, necklaces, bracelets, and more." />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 relative">
+        <main id="main-content" className="flex-1 relative">
           <section className="relative overflow-hidden min-h-screen">
             <div className="relative z-10 container mx-auto px-4 py-16">
               <div className="text-center mb-8">
@@ -172,7 +190,7 @@ const CreationCard = ({ item }: { item: CreationItem }) => {
       <div className={`absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent transition-opacity duration-300 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"
         }`}>
         <div className="absolute bottom-3 left-3 right-3">
-          <p className="text-foreground font-medium text-xs tracking-wide"></p>
+          <p className="text-foreground font-medium text-xs tracking-wide">{item.category}</p>
         </div>
       </div>
     </div>

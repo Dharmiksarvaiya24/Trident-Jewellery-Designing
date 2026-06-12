@@ -6,6 +6,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
 import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import stepSketch from "@/assets/imgs/How we are work/0Manual.png";
 import stepCad from "@/assets/imgs/How we are work/1CAD.jpg";
 import stepRendering from "@/assets/imgs/How we are work/2Render.jpg";
@@ -29,13 +30,13 @@ const Index = () => {
   const sliderInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const galleryItems = [
-    { img: exotic1, alt: "" },
-    { img: exotic2, alt: "" },
-    { img: exotic3, alt: "" },
-    { img: exotic4, alt: "" },
-    { img: exotic5, alt: "" },
-    { img: exotic6, alt: "" },
-    { img: exotic7, alt: "" },
+    { img: exotic1, alt: "Exotic ring design by Trident Jewellery" },
+    { img: exotic2, alt: "Exotic earring collection from Trident" },
+    { img: exotic3, alt: "Exotic necklace design in Trident portfolio" },
+    { img: exotic4, alt: "Exotic bracelet design by Trident Jewellery" },
+    { img: exotic5, alt: "Exotic pendant design from Trident collection" },
+    { img: exotic6, alt: "Exotic jewellery set by Trident" },
+    { img: exotic7, alt: "Exotic bangle design by Trident Jewellery" },
   ];
 
   const startAutoPlay = () => {
@@ -142,13 +143,15 @@ const Index = () => {
     };
   }, []);
 
-  return <PageTransition><div className="min-h-screen flex flex-col bg-background">
+  return <PageTransition>
+    <Seo title="Home" /><div className="min-h-screen flex flex-col bg-background">
 
     <Header />
 
-    <main className="flex-1 relative">
+    <main id="main-content" className="flex-1 relative">
 
       <section className="relative z-10 bg-background">
+        <h1 className="sr-only">Trident Jewellery Design — Premium Custom CAD Jewellery Studio</h1>
         <div className="w-full h-[92vh] overflow-hidden relative">
           <OptimizedImage
             src={heroImg}
@@ -265,12 +268,14 @@ const Index = () => {
             {/* Navigation arrows */}
             <button
               onClick={prevSlide}
+              aria-label="Previous image"
               className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 border border-border hover:border-primary/60 flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 backdrop-blur-sm"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             </button>
             <button
               onClick={nextSlide}
+              aria-label="Next image"
               className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 border border-border hover:border-primary/60 flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 backdrop-blur-sm"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -283,6 +288,7 @@ const Index = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
+                aria-label={`Go to image ${index + 1}`}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${sliderIndex === index
                   ? "bg-primary w-8"
                   : "bg-muted-foreground/30 hover:bg-muted-foreground/60"

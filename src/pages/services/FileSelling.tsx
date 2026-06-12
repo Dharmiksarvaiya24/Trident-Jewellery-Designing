@@ -2,28 +2,23 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import file1_1 from "@/assets/imgs/File Selling/1.mp4";
 import file1_2 from "@/assets/imgs/File Selling/1.png";
 import file1_3 from "@/assets/imgs/File Selling/2.png";
-
-import file2_1 from "@/assets/imgs/File Selling/3.mp4";
 import file2_2 from "@/assets/imgs/File Selling/3.png";
 import file2_3 from "@/assets/imgs/File Selling/4.png";
-
-import file3_1 from "@/assets/imgs/File Selling/5.mp4";
 import file3_2 from "@/assets/imgs/File Selling/5.png";
 import file3_3 from "@/assets/imgs/File Selling/6.png";
-
-import file4_1 from "@/assets/imgs/File Selling/7.mp4";
 import file4_2 from "@/assets/imgs/File Selling/7.png";
 import file4_3 from "@/assets/imgs/File Selling/8.png";
 
 const sections = [
   {
-    images: [file1_1, file1_2, file1_3],
+    images: ["/assets/videos/file-selling/1.mp4", file1_2, file1_3],
     title: "1. Instant Use Designs (No Waiting)",
     description: (
       <div className="space-y-4">
@@ -33,7 +28,7 @@ const sections = [
     )
   },
   {
-    images: [file2_1, file2_2, file2_3],
+    images: ["/assets/videos/file-selling/3.mp4", file2_2, file2_3],
     title: "2. Multiple Style Categories Available",
     description: (
       <div className="space-y-4">
@@ -55,7 +50,7 @@ const sections = [
     )
   },
   {
-    images: [file3_1, file3_2, file3_3],
+    images: ["/assets/videos/file-selling/5.mp4", file3_2, file3_3],
     title: "3. STL + 3DM + Render Images Included",
     description: (
       <div className="space-y-4">
@@ -72,7 +67,7 @@ const sections = [
     )
   },
   {
-    images: [file4_1, file4_2, file4_3],
+    images: ["/assets/videos/file-selling/7.mp4", file4_2, file4_3],
     title: "4. Affordable & Time-Saving",
     description: (
       <div className="space-y-4">
@@ -85,7 +80,7 @@ const sections = [
 
 const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -93,9 +88,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const FileSelling = () => {
   return (
     <PageTransition>
+      <Seo title="File Selling" description="Ready-to-use jewellery CAD files for instant purchase — STL, 3DM, and render images included. Save time and cost with our ready file packages." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

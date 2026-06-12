@@ -2,13 +2,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import face1_1 from "@/assets/imgs/Face/1.3.mp4";
 import face1_2 from "@/assets/imgs/Face/1.2.png";
 import face1_3 from "@/assets/imgs/Face/1.1.png";
-import face3_1 from "@/assets/imgs/Face/3.3.mp4";
 import face3_2 from "@/assets/imgs/Face/3.2.png";
 import face3_3 from "@/assets/imgs/Face/3.1.png";
 import face4_1 from "@/assets/imgs/Face/4.1.png";
@@ -20,7 +20,7 @@ import face5_3 from "@/assets/imgs/Face/5.3.png";
 
 const sections = [
   {
-    images: [face1_1, face1_2, face1_3],
+    images: ["/assets/videos/face/1.3.mp4", face1_2, face1_3],
     title: "1. High Detailing in Expressions",
     description: (
       <div className="space-y-4">
@@ -30,7 +30,7 @@ const sections = [
     )
   },
   {
-    images: [face3_1, face3_2, face3_3],
+    images: ["/assets/videos/face/3.3.mp4", face3_2, face3_3],
     title: "2. Use of Gold + Diamond Combinations",
     description: (
       <div className="space-y-4">
@@ -65,7 +65,7 @@ const sections = [
 
 const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -73,9 +73,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const FaceWork = () => {
   return (
     <PageTransition>
+      <Seo title="Face Work" description="Custom face pendant design services — realistic human face sculptures in CAD with detailed expressions, perfect for HipHop and custom jewellery." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

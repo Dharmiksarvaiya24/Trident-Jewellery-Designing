@@ -1,8 +1,8 @@
-import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import Seo from "@/components/Seo";
 import { Link } from "react-router-dom";
 
 import cadImg from "@/assets/imgs/Searvices /Cad.png";
@@ -28,9 +28,10 @@ const services = [
 const Services = () => {
   return (
     <PageTransition>
+      <Seo title="Services" description="Explore our wide range of jewelry design services including CAD designing, rendering, HipHop work, face work, manual designing, manufacturing, file selling, and custom jewelry." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20 min-h-[80vh] flex flex-col items-center justify-center">
+        <main id="main-content" className="container mx-auto px-4 py-20 min-h-[80vh] flex flex-col items-center justify-center">
 
           <div className="text-center mb-12">
             <p className="text-primary text-xs tracking-[0.4em] uppercase font-medium mb-4">What We Offer</p>

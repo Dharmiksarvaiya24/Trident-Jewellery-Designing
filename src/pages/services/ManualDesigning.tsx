@@ -2,28 +2,24 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import manual1_1 from "@/assets/imgs/Manual/M0.mp4";
 import manual1_2 from "@/assets/imgs/Manual/M1.jpeg";
 import manual1_3 from "@/assets/imgs/Manual/M3.jpeg";
-
-import manual2_1 from "@/assets/imgs/Manual/M4.mp4";
 import manual2_2 from "@/assets/imgs/Manual/M5.jpeg";
 import manual2_3 from "@/assets/imgs/Manual/M6.jpeg";
-
-import manual3_1 from "@/assets/imgs/Manual/M7.mp4";
 import manual3_2 from "@/assets/imgs/Manual/M8.jpeg";
 import manual3_3 from "@/assets/imgs/Manual/M9.jpeg";
-
 import manual4_1 from "@/assets/imgs/Manual/M10.jpeg";
 import manual4_2 from "@/assets/imgs/Manual/M11.jpeg";
 import manual4_3 from "@/assets/imgs/Manual/M12.jpeg";
 
 const sections = [
   {
-    images: [manual1_1, manual1_2, manual1_3],
+    images: ["/assets/videos/manual/M0.mp4", manual1_2, manual1_3],
     title: "1. Unique & Creative Concept Building",
     description: (
       <div className="space-y-4">
@@ -32,7 +28,7 @@ const sections = [
     )
   },
   {
-    images: [manual2_1, manual2_2, manual2_3],
+    images: ["/assets/videos/manual/M4.mp4", manual2_2, manual2_3],
     title: "2. Perfect Flow & Design Logic",
     description: (
       <div className="space-y-4">
@@ -42,7 +38,7 @@ const sections = [
     )
   },
   {
-    images: [manual3_1, manual3_2, manual3_3],
+    images: ["/assets/videos/manual/M7.mp4", manual3_2, manual3_3],
     title: "3. Experienced Designers Who Understand Manufacturing",
     description: (
       <div className="space-y-4">
@@ -66,7 +62,7 @@ const sections = [
 
 const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -74,9 +70,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const ManualDesigning = () => {
   return (
     <PageTransition>
+      <Seo title="Manual Designing" description="Traditional jewellery sketch design services — hand-drawn concepts with perfect flow, design logic, and manufacturing-ready proportions." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

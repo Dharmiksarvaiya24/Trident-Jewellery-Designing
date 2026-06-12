@@ -2,43 +2,38 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import mfg1_1 from "@/assets/imgs/Manufacturing/1.mp4";
 import mfg1_2 from "@/assets/imgs/Manufacturing/2.jpg";
 import mfg1_3 from "@/assets/imgs/Manufacturing/3.jpg";
-
-import mfg2_1 from "@/assets/imgs/Manufacturing/4.mp4";
 import mfg2_2 from "@/assets/imgs/Manufacturing/5.webp";
 import mfg2_3 from "@/assets/imgs/Manufacturing/6.png";
-
-import mfg3_1 from "@/assets/imgs/Manufacturing/7.mp4";
 import mfg3_2 from "@/assets/imgs/Manufacturing/8.jpg";
 import mfg3_3 from "@/assets/imgs/Manufacturing/9.png";
-
-import mfg4_1 from "@/assets/imgs/Manufacturing/10.mp4";
 import mfg4_2 from "@/assets/imgs/Manufacturing/11.jpg";
 import mfg4_3 from "@/assets/imgs/Manufacturing/12.jpg";
 
 const sections = [
   {
-    images: [mfg1_1, mfg1_2, mfg1_3],
+    images: ["/assets/videos/manufacturing/1.mp4", mfg1_2, mfg1_3],
     title: "1. Premium-Quality Finish Results",
     description: "With a smooth workflow across every stage — CAD → CAM → Casting → Setting — the final jewellery comes out with a premium, high-end finish."
   },
   {
-    images: [mfg2_1, mfg2_2, mfg2_3],
+    images: ["/assets/videos/manufacturing/4.mp4", mfg2_2, mfg2_3],
     title: "2. Premium Polishing & Finishing",
     description: "Smooth surfaces, sharp detailing, and a clean shine — our polishing gives jewellery a luxury-level finish. No rough marks, no uneven shine."
   },
   {
-    images: [mfg3_1, mfg3_2, mfg3_3],
+    images: ["/assets/videos/manufacturing/7.mp4", mfg3_2, mfg3_3],
     title: "3. Strong Quality Check at Every Stage",
     description: "From Wax → Casting → Filing → Setting → Polishing, every step goes through strict QC. Mistakes are caught during manufacturing, not at delivery."
   },
   {
-    images: [mfg4_1, mfg4_2, mfg4_3],
+    images: ["/assets/videos/manufacturing/10.mp4", mfg4_2, mfg4_3],
     title: "4. Perfect Comfort Fit for Daily Wear",
     description: "Smooth edges, soft inner finishing, and a comfortable wearing experience — the jewellery feels like it was made personally for the customer."
   },
@@ -46,7 +41,7 @@ const sections = [
 
 const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -54,9 +49,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const Manufacturing = () => {
   return (
     <PageTransition>
+      <Seo title="Manufacturing" description="End-to-end jewellery manufacturing services — from CAD to CAM, casting, setting, and polishing with strict quality control at every stage." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

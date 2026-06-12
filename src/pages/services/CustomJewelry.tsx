@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -54,9 +55,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const CustomJewelry = () => {
   return (
     <PageTransition>
+      <Seo title="Custom Jewelry" description="Bespoke custom jewellery design services — truly unique pieces with complex geometry, advanced stone setting, and optimized weight." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

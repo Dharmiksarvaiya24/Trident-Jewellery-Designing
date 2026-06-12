@@ -66,7 +66,7 @@ const Header = () => {
       {/* Mobile Menu */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild className="md:hidden">
-          <button className="text-muted-foreground p-2 hover:text-primary transition-colors">
+          <button className="text-muted-foreground p-2 hover:text-primary transition-colors" aria-label={isOpen ? "Close menu" : "Open menu"} aria-expanded={isOpen}>
             <Menu className="h-6 w-6" />
           </button>
         </SheetTrigger>

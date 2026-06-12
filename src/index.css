@@ -27,7 +27,7 @@ Luxury Black + Copper/Rose-Gold theme inspired by Trident Jewellery logo.
     --secondary-foreground: 0 0% 95%;
 
     --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 58%;
+    --muted-foreground: 0 0% 62%;
 
     --accent: 11 88% 67%;
     --accent-foreground: 0 0% 6%;
@@ -153,10 +153,6 @@ Luxury Black + Copper/Rose-Gold theme inspired by Trident Jewellery logo.
     animation: scroll-horizontal 30s linear infinite;
   }
 
-  .animate-scroll-horizontal-fast {
-    animation: scroll-horizontal 15s linear infinite;
-  }
-
   .animate-scroll-horizontal-slow {
     animation: scroll-horizontal 60s linear infinite;
   }
@@ -171,22 +167,6 @@ Luxury Black + Copper/Rose-Gold theme inspired by Trident Jewellery logo.
   }
 
   /* Floating orb animations */
-  @keyframes float1 {
-
-    0%,
-    100% {
-      transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-      transform: translate(30px, -50px) scale(1.05);
-    }
-
-    66% {
-      transform: translate(-20px, 20px) scale(0.95);
-    }
-  }
-
   @keyframes float2 {
 
     0%,
@@ -203,32 +183,4 @@ Luxury Black + Copper/Rose-Gold theme inspired by Trident Jewellery logo.
     }
   }
 
-  @keyframes float3 {
-
-    0%,
-    100% {
-      transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-      transform: translate(-30px, -30px) scale(1.1);
-    }
-  }
-
-  /* Copper glow pulse */
-  @keyframes copper-pulse {
-
-    0%,
-    100% {
-      box-shadow: 0 0 20px hsl(11 88% 67% / 0.2);
-    }
-
-    50% {
-      box-shadow: 0 0 40px hsl(11 88% 67% / 0.4);
-    }
-  }
-
-  .copper-pulse {
-    animation: copper-pulse 3s ease-in-out infinite;
-  }
 }

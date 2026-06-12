@@ -2,13 +2,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import hiphop1_1 from "@/assets/imgs/Hiphop/1.3.mp4";
+import hiphop1_1 from "@/assets/imgs/Hiphop/1.1.webp";
 import hiphop1_2 from "@/assets/imgs/Hiphop/1.2.png";
 import hiphop1_3 from "@/assets/imgs/Hiphop/1.1.png";
-import hiphop2_1 from "@/assets/imgs/Hiphop/2.3.mp4";
 import hiphop2_2 from "@/assets/imgs/Hiphop/2.2.png";
 import hiphop2_3 from "@/assets/imgs/Hiphop/2.1.png";
 import hiphop3_1 from "@/assets/imgs/Hiphop/3.1.png";
@@ -29,7 +30,7 @@ const sections = [
     )
   },
   {
-    images: [hiphop2_1, hiphop2_2, hiphop2_3],
+    images: ["/assets/videos/hiphop/2.3.mp4", hiphop2_2, hiphop2_3],
     title: "2. Iced-Out Watches",
     description: (
       <div className="space-y-4">
@@ -61,7 +62,7 @@ const sections = [
 
 const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -69,9 +70,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const HiphopWork = () => {
   return (
     <PageTransition>
+      <Seo title="HipHop Work" description="Bold and oversized HipHop jewellery design services — Cuban chains, iced-out watches, face pendants, and custom streetwear-inspired pieces." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

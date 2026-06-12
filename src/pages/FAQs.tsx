@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import Seo from "@/components/Seo";
 import {
   Accordion,
   AccordionContent,
@@ -64,9 +65,10 @@ const FAQs = () => {
 
   return (
     <PageTransition>
+      <Seo title="FAQs" description="Find answers to common questions about our jewelry design services — CAD design process, delivery time, payment methods, confidentiality, and more." />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 relative">
+        <main id="main-content" className="flex-1 relative">
           <section className="relative overflow-hidden min-h-screen">
             {/* Ambient glow */}
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary/4 blur-3xl rounded-full pointer-events-none" />

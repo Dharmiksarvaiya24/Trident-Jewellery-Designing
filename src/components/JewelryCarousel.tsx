@@ -119,12 +119,14 @@ const JewelryCarousel = () => {
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
+        aria-label="Previous slide"
         className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/50 border border-border hover:border-primary/60 flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 backdrop-blur-sm z-10"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
       </button>
       <button
         onClick={nextSlide}
+        aria-label="Next slide"
         className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/50 border border-border hover:border-primary/60 flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 backdrop-blur-sm z-10"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -136,6 +138,7 @@ const JewelryCarousel = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentIndex === index
                 ? "bg-primary w-8"
                 : "bg-muted-foreground/50 hover:bg-muted-foreground"

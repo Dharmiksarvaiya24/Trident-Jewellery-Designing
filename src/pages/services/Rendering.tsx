@@ -2,25 +2,23 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
+import OptimizedVideo from "@/components/OptimizedVideo";
+import Seo from "@/components/Seo";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import render1 from "@/assets/imgs/Render/3.mp4";
 import render2 from "@/assets/imgs/Render/2.png";
 import render3 from "@/assets/imgs/Render/1.png";
-import render4 from "@/assets/imgs/Render/6.mp4";
 import render5 from "@/assets/imgs/Render/5.png";
 import render6 from "@/assets/imgs/Render/4.png";
-import render7 from "@/assets/imgs/Render/9.mp4";
 import render10 from "@/assets/imgs/Render/6.png";
 import render9 from "@/assets/imgs/Render/7.png";
-import render11 from "@/assets/imgs/Render/12.mp4";
 import render6_png from "@/assets/imgs/Render/10.png";
 import render12 from "@/assets/imgs/Render/11.png";
 
 const sections = [
   {
-    images: [render1, render2, render3],
+    images: ["/assets/videos/render/3.mp4", render2, render3],
     title: "1. Realistic Photo Before Manufacturing",
     description: (
       <div className="space-y-4">
@@ -30,7 +28,7 @@ const sections = [
     )
   },
   {
-    images: [render4, render5, render6],
+    images: ["/assets/videos/render/6.mp4", render5, render6],
     title: "2. Extremely Useful for Marketing",
     description: (
       <div className="space-y-4">
@@ -40,7 +38,7 @@ const sections = [
     )
   },
   {
-    images: [render7, render10, render9],
+    images: ["/assets/videos/render/9.mp4", render10, render9],
     title: "3. Cost & Time Saving",
     description: (
       <div className="space-y-4">
@@ -50,7 +48,7 @@ const sections = [
     )
   },
   {
-    images: [render11, render6_png, render12],
+    images: ["/assets/videos/render/12.mp4", render6_png, render12],
     title: "4. Gives Jewellery a High-End Premium Look",
     description: (
       <div className="space-y-4">
@@ -63,7 +61,7 @@ const sections = [
 
 const RenderMedia = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
   if (src.endsWith(".mp4")) {
-    return <video src={src} autoPlay loop muted playsInline className={className} />;
+    return <OptimizedVideo src={src} className={className} />;
   }
   return <OptimizedImage src={src} alt={alt} className={className} />;
 };
@@ -71,9 +69,10 @@ const RenderMedia = ({ src, alt, className }: { src: string; alt: string; classN
 const Rendering = () => {
   return (
     <PageTransition>
+      <Seo title="Rendering" description="Premium jewellery rendering services — realistic 3D product visualization, perfect for marketing, catalogs, and client approvals." />
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 py-20">
+        <main id="main-content" className="container mx-auto px-4 py-20">
           <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-10 transition-colors text-sm tracking-wide group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
             Back to Services

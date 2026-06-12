@@ -18,7 +18,7 @@ const Footer = () => {
     { label: "FAQs", path: "/faqs" },
   ];
   const socialLinks = [
-    { icon: Instagram, url: "https://www.instagram.com/trident_jewelles?igsh=MTQ5ZG81MmV1aWtoMg==", label: "Instagram", image: null },
+    { icon: Instagram, url: "https://www.instagram.com/trident_designing/", label: "Instagram", image: null },
     { icon: Facebook, url: "https://www.facebook.com/profile.php?id=61583075837962", label: "Facebook", image: null },
     { icon: Linkedin, url: "https://www.linkedin.com/company/110205384/admin/inbox/", label: "LinkedIn", image: null },
     { icon: Mail, url: "mailto:contact@tridentjewellery.com", label: "Email", image: null },
@@ -41,6 +41,8 @@ const Footer = () => {
               src={tridentLogo}
               alt="Trident Logo"
               className="h-24 w-auto mx-auto sm:mx-0 hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* Social Media Icons */}
@@ -56,7 +58,7 @@ const Footer = () => {
                 >
                   {social.icon
                     ? <social.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground" />
-                    : <img src={social.image!} alt={social.label} className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain opacity-50 invert" />
+                    : <img src={social.image!} alt={social.label} className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain opacity-50 invert" loading="lazy" decoding="async" />
                   }
                 </a>
               ))}
@@ -74,7 +76,7 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-primary" />
                 <div className="text-left">
                   <p className="font-medium text-foreground text-sm">Address</p>
-                  <p className="text-sm leading-relaxed">F118, ABC apartment, ABC Circle,<br />Sudama chowk, Surat, Gujarat, 394101</p>
+                  <p className="text-sm leading-relaxed">301, ABC Apartment 2, ABC Circle,<br />Sudama Chowk, Surat, Gujarat, 394101</p>
                 </div>
               </div>
             </div>

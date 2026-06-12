@@ -1,13 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import Seo from "@/components/Seo";
 
 const Terms = () => {
   return (
     <PageTransition>
+      <Seo title="Terms and Conditions" description="Terms and conditions for using Trident Jewellery Design services. Read our policies on payments, deliveries, revisions, and confidentiality." />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 relative">
+        <main id="main-content" className="flex-1 relative">
           <section className="relative overflow-hidden min-h-screen">
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-primary/4 blur-3xl rounded-full pointer-events-none" />
             <div className="relative z-10 container mx-auto px-4 py-16">
