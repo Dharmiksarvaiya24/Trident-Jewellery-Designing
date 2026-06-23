@@ -57,7 +57,7 @@ const About = () => {
                 >
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                   <div className="flex flex-col items-center gap-2">
-                    <div className="group w-56 md:w-80 rounded-xl overflow-hidden border-2 border-primary/40 bg-muted/40 mb-4 p-4 transition-transform hover:scale-105 duration-300 flex items-center justify-center" style={{ boxShadow: '0 0 20px hsl(11 88% 67% / 0.15)' }}>
+                    <div className="group w-56 md:w-80 rounded-xl overflow-hidden border-2 border-primary/40 bg-muted/40 mb-4  transition-transform hover:scale-105 duration-300 flex items-center justify-center" style={{ boxShadow: '0 0 20px hsl(11 88% 67% / 0.15)' }}>
                       <OptimizedImage src={tridentLogo} alt="Trident Jewellery Logo" className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <p className="text-lg font-semibold text-foreground tracking-wide">Trident Jewellery</p>

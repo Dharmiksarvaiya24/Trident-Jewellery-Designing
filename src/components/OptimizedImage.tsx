@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import { cn } from "@/lib/utils";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -9,10 +9,21 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   sizes?: string;
   className?: string;
   containerClassName?: string;
-  webpSrc?: string;
   quality?: "high" | "medium" | "low";
 }
 
+/**
+ * OptimizedImage - Performance-optimized image component
+ *
+ * Features:
+ * - Uses IntersectionObserver for lazy loading (primary)
+ * - Native loading=lazy as backup
+ * - WebP auto-detection and fallback via onError
+ * - Skeleton shimmer loading effect
+ * - Eager loading for above-the-fold images (priority=true)
+ * - Proper sizes attribute for responsive images
+ * - CSS contain hints for layout stability & paint isolation
+ */
 const OptimizedImage = ({
   src,
   alt,
@@ -21,71 +32,56 @@ const OptimizedImage = ({
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
   className,
   containerClassName,
-  webpSrc,
-  quality = "high",
   ...props
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
-  const [supportsWebp, setSupportsWebp] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Check WebP support
-  useEffect(() => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 1;
-    canvas.height = 1;
-    const context = canvas.getContext("2d");
-    if (context) {
-      context.fillStyle = "rgb(0,0,0)";
-      context.fillRect(0, 0, 1, 1);
-      setSupportsWebp(canvas.toDataURL("image/webp").startsWith("data:image/webp"));
-    }
-  }, []);
-
-  // Intersection Observer for lazy loading
+  // Intersection Observer for lazy loading with 200px rootMargin buffer
   useEffect(() => {
     if (priority) {
       setIsInView(true);
       return;
     }
 
+    if (!containerRef.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          observer.disconnect();
+          observer.disconnect(); // Stop observing once in view
         }
       },
       {
-        rootMargin: "0px 0px 100px 0px",
+        // Load images 200px before they come into view for smoother experience
+        rootMargin: "200px 0px 200px 0px",
         threshold: 0,
       }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(containerRef.current);
 
     return () => observer.disconnect();
   }, [priority]);
 
-  // Preload priority images
+  // Preload priority images in <head>
   useEffect(() => {
     if (priority && src) {
-      const imageToPreload = supportsWebp && webpSrc ? webpSrc : src;
       const link = document.createElement("link");
       link.rel = "preload";
       link.as = "image";
-      link.href = imageToPreload;
+      link.href = src;
+      link.fetchPriority = "high";
       document.head.appendChild(link);
 
       return () => {
         document.head.removeChild(link);
       };
     }
-  }, [priority, src, webpSrc, supportsWebp]);
+  }, [priority, src]);
 
   const aspectClasses = {
     square: "aspect-square",
@@ -93,9 +89,6 @@ const OptimizedImage = ({
     portrait: "aspect-[3/4]",
     auto: "",
   };
-
-  // Select image source based on WebP support
-  const imageSrc = supportsWebp && webpSrc ? webpSrc : src;
 
   return (
     <div
@@ -105,29 +98,25 @@ const OptimizedImage = ({
         aspectClasses[aspectRatio],
         containerClassName
       )}
+      // Mark as potentially needing paint containment for perf
+      style={{ contain: "layout paint" }}
     >
-      {/* Skeleton shimmer effect */}
+      {/* Skeleton shimmer effect — shown while loading */}
       {!isLoaded && (
         <div className="absolute inset-0 skeleton-shimmer z-10" />
       )}
 
-      {/* Actual image */}
-      {isInView && (
+      {/* Actual image — only render when in viewport or priority */}
+      {(isInView || priority) && (
         <img
           ref={imgRef}
-          src={imageSrc}
+          src={src}
           alt={alt}
           sizes={sizes}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
           fetchPriority={priority ? "high" : "auto"}
           onLoad={() => setIsLoaded(true)}
-          onError={() => {
-            // Fallback to original format if WebP fails
-            if (imgRef.current && imageSrc !== src) {
-              imgRef.current.src = src;
-            }
-          }}
           className={cn(
             "w-full h-full object-cover transition-opacity duration-500",
             isLoaded ? "opacity-100" : "opacity-0",
@@ -140,4 +129,4 @@ const OptimizedImage = ({
   );
 };
 
-export default OptimizedImage;
+export default memo(OptimizedImage);

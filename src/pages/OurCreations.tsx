@@ -185,11 +185,7 @@ const CreationCard = ({ item }: { item: CreationItem }) => {
 
       {/* Hover overlay */}
       <div className={`absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent transition-opacity duration-300 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"
-        }`}>
-        <div className="absolute bottom-3 left-3 right-3">
-          <p className="text-foreground font-medium text-xs tracking-wide">{item.category}</p>
-        </div>
-      </div>
+        }`} />
     </div>
   );
 };

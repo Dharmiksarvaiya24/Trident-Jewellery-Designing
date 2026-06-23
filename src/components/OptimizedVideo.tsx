@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import { cn } from "@/lib/utils";
 
 interface OptimizedVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
@@ -7,8 +7,25 @@ interface OptimizedVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement
   priority?: boolean;
   aspectRatio?: "square" | "video" | "portrait" | "auto";
   containerClassName?: string;
+  /** Whether the video starts playing automatically. Defaults to true. */
+  autoPlay?: boolean;
+  /** Whether the video loops. Defaults to true. */
+  loop?: boolean;
+  /** Whether the video is muted. Defaults to true. */
+  muted?: boolean;
 }
 
+/**
+ * OptimizedVideo - Performance-optimized video component
+ *
+ * Features:
+ * - IntersectionObserver for lazy loading (loads 200px before viewport)
+ * - Starts playback only when in viewport to save CPU/battery
+ * - Skeleton shimmer loading effect
+ * - Metadata-only preload for non-priority videos to save bandwidth
+ * - Poster frame support for instant visual before first frame
+ * - CSS contain hints for better paint/layout performance
+ */
 const OptimizedVideo = ({
   src,
   poster,
@@ -19,7 +36,6 @@ const OptimizedVideo = ({
   autoPlay = true,
   loop = true,
   muted = true,
-  playsInline = true,
   ...props
 }: OptimizedVideoProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,29 +43,30 @@ const OptimizedVideo = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer for lazy loading
+  // Intersection Observer for lazy loading with 200px rootMargin buffer
   useEffect(() => {
     if (priority) {
       setIsInView(true);
       return;
     }
 
+    if (!containerRef.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          observer.disconnect();
+          observer.disconnect(); // Stop observing once in view
         }
       },
       {
-        rootMargin: "0px 0px 100px 0px",
-        threshold: 0.1,
+        // Load videos 200px before they come into view for smoother experience
+        rootMargin: "200px 0px 200px 0px",
+        threshold: 0,
       }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(containerRef.current);
 
     return () => observer.disconnect();
   }, [priority]);
@@ -57,24 +74,11 @@ const OptimizedVideo = ({
   // Start playback once loaded and in view
   useEffect(() => {
     if (isInView && videoRef.current && autoPlay) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => {
+        // Autoplay may be blocked by browser policy; ignore error
+      });
     }
   }, [isInView, autoPlay]);
-
-  // Preload priority videos
-  useEffect(() => {
-    if (priority && src) {
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.as = "video";
-      link.href = src;
-      document.head.appendChild(link);
-
-      return () => {
-        document.head.removeChild(link);
-      };
-    }
-  }, [priority, src]);
 
   const aspectClasses = {
     square: "aspect-square",
@@ -91,13 +95,15 @@ const OptimizedVideo = ({
         aspectClasses[aspectRatio],
         containerClassName
       )}
+      // Mark as potentially needing paint containment for perf
+      style={{ contain: "layout paint" }}
     >
-      {/* Skeleton shimmer effect */}
+      {/* Skeleton shimmer effect — shown while loading */}
       {!isLoaded && (
         <div className="absolute inset-0 skeleton-shimmer z-10" />
       )}
 
-      {/* Actual video */}
+      {/* Actual video — only render when in viewport or priority */}
       {isInView && (
         <video
           ref={videoRef}
@@ -106,8 +112,8 @@ const OptimizedVideo = ({
           autoPlay={autoPlay}
           loop={loop}
           muted={muted}
-          playsInline={playsInline}
-          preload={priority ? "auto" : "none"}
+          playsInline
+          preload={priority ? "auto" : "metadata"}
           onLoadedData={() => setIsLoaded(true)}
           onCanPlayThrough={() => setIsLoaded(true)}
           className={cn(
@@ -122,4 +128,4 @@ const OptimizedVideo = ({
   );
 };
 
-export default OptimizedVideo;
+export default memo(OptimizedVideo);

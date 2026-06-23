@@ -18,10 +18,10 @@ const Footer = () => {
     { label: "FAQs", path: "/faqs" },
   ];
   const socialLinks = [
-    { icon: Instagram, url: "https://www.instagram.com/trident_designing/", label: "Instagram", image: null },
-    { icon: Facebook, url: "https://www.facebook.com/profile.php?id=61583075837962", label: "Facebook", image: null },
-    { icon: Linkedin, url: "https://www.linkedin.com/company/110205384/admin/inbox/", label: "LinkedIn", image: null },
-    { icon: Mail, url: "mailto:contact@tridentjewellery.com", label: "Email", image: null },
+    { icon: Instagram, url: "https://www.instagram.com/trident_designing/", label: "Instagram" },
+    { icon: Facebook, url: "https://www.facebook.com/profile.php?id=61583075837962", label: "Facebook" },
+    { icon: Linkedin, url: "https://www.linkedin.com/company/110205384/admin/inbox/", label: "LinkedIn" },
+    { icon: Mail, url: "mailto:contact@tridentjewellery.com", label: "Email" },
     { icon: null, url: "https://www.fiverr.com/s/1qBBaZ9", label: "Fiverr", image: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/fiverr.svg" },
     { icon: null, url: "https://www.upwork.com/freelancers/~017f09d8153144d145?mp_source=share", label: "Upwork", image: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/upwork.svg" },
     { icon: null, url: "https://x.com/tridentjewel25", label: "X", image: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" },
@@ -136,4 +136,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;
