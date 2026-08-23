@@ -8,10 +8,23 @@ import Seo from "@/components/Seo";
 
 // Use ?url query to get file URLs without bundling file contents into JS
 // Only match images from source — videos served from public/
-const imageModules = import.meta.glob<string>(
+const rawImageModules = import.meta.glob<string>(
   "@/assets/imgs/Our creation/*.{webp,png,jpg,jpeg}",
   { query: "?url", import: "default", eager: true },
 );
+
+// Deduplicate images by filename stem (e.g. '01'), preferring .webp format
+const uniqueImagePaths = Object.entries(rawImageModules).reduce<string[]>((acc, [file, url]) => {
+  const stem = file.split("/").pop()?.split(".")[0];
+  if (!stem) return acc;
+  const existingIndex = acc.findIndex(u => u.split("/").pop()?.split(".")[0] === stem);
+  if (existingIndex === -1) {
+    acc.push(url);
+  } else if (file.endsWith(".webp")) {
+    acc[existingIndex] = url;
+  }
+  return acc;
+}, []);
 
 // Videos served from public/ to avoid bundling large files
 const videoPaths = [
@@ -23,7 +36,7 @@ const videoPaths = [
   "/assets/videos/our-creation/007.mp4",
 ];
 
-const mediaPaths: string[] = [...new Set(Object.values(imageModules)), ...videoPaths];
+const mediaPaths: string[] = [...new Set([...uniqueImagePaths, ...videoPaths])];
 
 const categories = ["All", "Rings", "Necklaces", "Bracelets", "Earrings", "Tiaras", "Collections"];
 const imageAspectRatios = ["1/1", "3/4", "4/3", "4/5", "5/4", "3/4", "4/5"];
@@ -163,7 +176,7 @@ const CreationCard = ({ item }: { item: CreationItem }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        boxShadow: hovered ? '0 0 30px hsl(11 88% 67% / 0.15)' : 'none',
+        boxShadow: hovered ? '0 0 30px hsl(var(--primary) / 0.15)' : 'none',
         aspectRatio: item.aspectRatio
       }}
     >

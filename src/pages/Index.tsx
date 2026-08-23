@@ -433,21 +433,21 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={50} suffix="+" />
+                <AnimatedCounter end={100} suffix="+" />
               </div>
               <p className="text-muted-foreground mt-2 text-sm md:text-base">Happy Clients</p>
             </div>
 
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={5000} suffix="+" />
+                <AnimatedCounter end={10000} suffix="+" />
               </div>
               <p className="text-muted-foreground mt-2 text-sm md:text-base">Designs Delivered</p>
             </div>
 
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={4} suffix="+" />
+                <AnimatedCounter end={5} suffix="+" />
               </div>
               <p className="text-muted-foreground mt-2 text-sm md:text-base">Countries Served</p>
             </div>

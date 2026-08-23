@@ -57,7 +57,7 @@ const Services = () => {
                 to={service.path}
                 className="group relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-primary/50 hover:scale-105"
                 style={{ transition: 'all 0.3s ease' }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 30px hsl(11 88% 67% / 0.15)')}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 30px hsl(var(--primary) / 0.15)')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
               >
                 <OptimizedImage

@@ -68,7 +68,7 @@ const Pricing = () => {
             </div>
 
             <div className="w-full max-w-md bg-card rounded-2xl p-8 border border-border relative overflow-hidden"
-              style={{ boxShadow: '0 0 60px hsl(11 88% 67% / 0.08)' }}
+              style={{ boxShadow: '0 0 60px hsl(var(--primary) / 0.08)' }}
             >
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
               <form onSubmit={handleSubmit} className="space-y-6">

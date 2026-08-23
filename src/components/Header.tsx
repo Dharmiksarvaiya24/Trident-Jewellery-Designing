@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <header className="py-4 px-6 flex justify-between items-center bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm" style={{ boxShadow: '0 1px 30px hsl(11 88% 67% / 0.08)' }}>
+    <header className="py-4 px-6 flex justify-between items-center bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm" style={{ boxShadow: '0 1px 30px hsl(var(--primary) / 0.08)' }}>
 
       <div className="flex items-center animate-fade-in">
         <Link to="/" className="relative group cursor-pointer">

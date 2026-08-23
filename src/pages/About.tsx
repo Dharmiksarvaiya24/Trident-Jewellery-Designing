@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import OptimizedImage from "@/components/OptimizedImage";
 import Seo from "@/components/Seo";
-import tridentLogo from "@/assets/imgs/image copy.png";
+import tridentLogo from "@/assets/imgs/trident-logo.png";
 import founderPhoto from "@/assets/founder-photo.png";
 
 const About = () => {
@@ -52,12 +52,12 @@ const About = () => {
               <div className="flex justify-center">
                 <div
                   ref={boxRef}
-                  className={`bg-card rounded-2xl p-8 md:p-12 border border-border transition-all duration-1000 max-w-4xl w-full text-center hover:border-primary/40 relative overflow-hidden ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                  className={`bg-card p-8 md:p-12  max-w-4xl w-full text-center hover:border-primary/40 relative overflow-hidden ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
                     }`}
                 >
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                   <div className="flex flex-col items-center gap-2">
-                    <div className="group w-56 md:w-80 rounded-xl overflow-hidden border-2 border-primary/40 bg-muted/40 mb-4  transition-transform hover:scale-105 duration-300 flex items-center justify-center" style={{ boxShadow: '0 0 20px hsl(11 88% 67% / 0.15)' }}>
+                    <div className="group w-56 md:w-80 rounded-xl overflow-hidden border-2 border-primary/40 bg-muted/40 mb-4  transition-transform hover:scale-105 duration-300 flex items-center justify-center" style={{ boxShadow: '0 0 20px hsl(var(--primary) / 0.15)' }}>
                       <OptimizedImage src={tridentLogo} alt="Trident Jewellery Logo" className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <p className="text-lg font-semibold text-foreground tracking-wide">Trident Jewellery</p>
@@ -77,7 +77,7 @@ const About = () => {
                 <div className="bg-card rounded-2xl p-8 md:p-12 border border-border max-w-4xl w-full hover:border-primary/40 transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                   <div className="flex flex-col md:flex-row items-center gap-8">
-                    <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-primary/40 flex-shrink-0" style={{ boxShadow: '0 0 30px hsl(11 88% 67% / 0.15)' }}>
+                    <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-primary/40 flex-shrink-0" style={{ boxShadow: '0 0 30px hsl(var(--primary) / 0.15)' }}>
                       <OptimizedImage src={founderPhoto} alt="Founder of Trident Jewellery" className="w-full h-full object-cover" />
                     </div>
                     <div className="text-center md:text-left">
